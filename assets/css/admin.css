@@ -555,8 +555,8 @@ body.admin-body {
 
 .admin-stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
     margin-bottom: 24px;
 }
 
@@ -609,7 +609,7 @@ body.admin-body {
     font-size: 0.78rem;
     color: var(--admin-text-muted);
     margin-top: 2px;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .admin-persistence-banner {
@@ -2051,5 +2051,227 @@ body.admin-body {
 @media (max-width: 480px) {
     .admin-products-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Analytics: panel de métricas con acabado glass */
+#adminAnalyticsSection {
+    --admin-text-muted: #aab4c7;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(18px, 3vw, 32px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    color: #f7f8fc;
+    background:
+        radial-gradient(ellipse at 12% 0%, rgba(128, 83, 255, 0.22), transparent 34%),
+        radial-gradient(ellipse at 94% 8%, rgba(39, 183, 197, 0.13), transparent 29%),
+        linear-gradient(145deg, #121827 0%, #0c111c 58%, #111322 100%);
+    box-shadow: 0 24px 70px rgba(18, 24, 39, 0.22);
+}
+
+#adminAnalyticsSection .admin-header-title h1 {
+    color: #f7f8fc;
+    letter-spacing: -0.035em;
+}
+
+#adminAnalyticsSection .admin-header-title h1 span {
+    color: #c4a5ff;
+}
+
+#adminAnalyticsSection .admin-header-title p {
+    max-width: 720px;
+    color: #aab4c7;
+    line-height: 1.6;
+}
+
+#adminAnalyticsSection .analytics-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+#adminAnalyticsSection .analytics-stat-card {
+    position: relative;
+    min-width: 0;
+    min-height: 104px;
+    overflow: hidden;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.035));
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16), inset 0 1px rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+#adminAnalyticsSection .analytics-stat-card::after {
+    position: absolute;
+    top: -34px;
+    right: -24px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(162, 89, 255, 0.1);
+    content: "";
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+#adminAnalyticsSection .analytics-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(196, 165, 255, 0.35);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+}
+
+#adminAnalyticsSection .analytics-stat-card .admin-stat-icon {
+    position: relative;
+    z-index: 1;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+}
+
+#adminAnalyticsSection .analytics-stat-card .admin-stat-info {
+    position: relative;
+    z-index: 1;
+}
+
+#adminAnalyticsSection .analytics-stat-card .admin-stat-number {
+    color: #f7f8fc;
+    font-size: 1.65rem;
+    font-variant-numeric: tabular-nums;
+}
+
+#adminAnalyticsSection .analytics-stat-card .admin-stat-label {
+    color: #aab4c7;
+    white-space: normal;
+}
+
+#adminAnalyticsSection .analytics-charts-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.85fr);
+    gap: 18px;
+}
+
+#adminAnalyticsSection .analytics-chart-card {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 22px;
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18), inset 0 1px rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+#adminAnalyticsSection .analytics-chart-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(196, 165, 255, 0.28);
+}
+
+#adminAnalyticsSection .analytics-chart-header {
+    display: flex;
+    min-height: 46px;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 16px;
+}
+
+#adminAnalyticsSection .analytics-chart-header > div {
+    min-width: 0;
+}
+
+#adminAnalyticsSection .analytics-chart-header h3 {
+    color: #f2f4fa;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+}
+
+#adminAnalyticsSection .analytics-chart-header p {
+    margin-top: 4px !important;
+    color: #aab4c7 !important;
+    line-height: 1.45;
+}
+
+#adminAnalyticsSection .analytics-chart-plot {
+    position: relative;
+    height: 280px;
+    min-width: 0;
+}
+
+#adminAnalyticsSection .analytics-chart-plot canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+}
+
+#adminAnalyticsSection #btnResetAnalytics {
+    border-color: rgba(255, 118, 117, 0.28);
+    border-radius: 12px;
+    background: rgba(231, 76, 60, 0.08);
+}
+
+#adminAnalyticsSection #btnResetAnalytics:hover {
+    background: rgba(231, 76, 60, 0.16);
+}
+
+@media (max-width: 900px) {
+    #adminAnalyticsSection {
+        padding: 18px 14px;
+        border-radius: 20px;
+    }
+
+    #adminAnalyticsSection .analytics-metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #adminAnalyticsSection .analytics-stat-card {
+        min-height: 94px;
+        gap: 10px;
+        padding: 13px 10px;
+    }
+
+    #adminAnalyticsSection .analytics-stat-card .admin-stat-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+
+    #adminAnalyticsSection .analytics-stat-card .admin-stat-number {
+        font-size: 1.35rem;
+    }
+
+    #adminAnalyticsSection .analytics-stat-card .admin-stat-label {
+        font-size: 0.7rem;
+    }
+
+    #adminAnalyticsSection .analytics-charts-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    #adminAnalyticsSection .analytics-chart-card {
+        padding: 16px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #adminAnalyticsSection .analytics-stat-card,
+    #adminAnalyticsSection .analytics-chart-card {
+        transition: none;
+    }
+
+    #adminAnalyticsSection .analytics-stat-card:hover,
+    #adminAnalyticsSection .analytics-chart-card:hover {
+        transform: none;
     }
 }
