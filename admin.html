@@ -562,15 +562,15 @@
             <!-- ========================================================
                  SECCIÓN 5: ANALYTICS - ESTADÍSTICAS AUTOMÁTICAS
                  ======================================================== -->
-            <div id="adminAnalyticsSection" style="display: none;">
+            <div id="adminAnalyticsSection" class="admin-analytics-dashboard" style="display: none;">
                 <div class="admin-header-title">
                     <h1>Analytics &amp; <span>Estadísticas en Tiempo Real</span></h1>
                     <p>Seguimiento automático de visitas diarias, pedidos, reseñas y solicitudes de Atención al Cliente.</p>
                 </div>
 
                 <!-- Fila de métricas rápidas de analytics -->
-                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:24px;">
-                    <div class="admin-stat-card" style="padding:20px;">
+                <div class="analytics-metrics-grid">
+                    <div class="admin-stat-card analytics-stat-card">
                         <div class="admin-stat-icon" style="color:#a259ff; background:rgba(162,89,255,0.15);">
                             <i class="fas fa-eye"></i>
                         </div>
@@ -579,7 +579,7 @@
                             <div class="admin-stat-label">Visitas Hoy</div>
                         </div>
                     </div>
-                    <div class="admin-stat-card" style="padding:20px;">
+                    <div class="admin-stat-card analytics-stat-card">
                         <div class="admin-stat-icon" style="color:#a259ff; background:rgba(162,89,255,0.15);">
                             <i class="fas fa-calendar-week"></i>
                         </div>
@@ -588,7 +588,7 @@
                             <div class="admin-stat-label">Esta Semana</div>
                         </div>
                     </div>
-                    <div class="admin-stat-card" style="padding:20px;">
+                    <div class="admin-stat-card analytics-stat-card">
                         <div class="admin-stat-icon" style="color:#a259ff; background:rgba(162,89,255,0.15);">
                             <i class="fas fa-calendar-days"></i>
                         </div>
@@ -597,7 +597,7 @@
                             <div class="admin-stat-label">Este Mes</div>
                         </div>
                     </div>
-                    <div class="admin-stat-card" style="padding:20px;">
+                    <div class="admin-stat-card analytics-stat-card">
                         <div class="admin-stat-icon" style="color:#a259ff; background:rgba(162,89,255,0.15);">
                             <i class="fas fa-globe"></i>
                         </div>
@@ -606,7 +606,7 @@
                             <div class="admin-stat-label">Total Histórico</div>
                         </div>
                     </div>
-                    <div class="admin-stat-card" style="padding:20px;">
+                    <div class="admin-stat-card analytics-stat-card">
                         <div class="admin-stat-icon" style="color:#2ecc71; background:rgba(46,204,113,0.15);">
                             <i class="fas fa-motorcycle"></i>
                         </div>
@@ -615,7 +615,7 @@
                             <div class="admin-stat-label">Pedidos en Total</div>
                         </div>
                     </div>
-                    <div class="admin-stat-card" style="padding:20px;">
+                    <div class="admin-stat-card analytics-stat-card">
                         <div class="admin-stat-icon" style="color:#ffb800; background:rgba(255,184,0,0.15);">
                             <i class="fas fa-star"></i>
                         </div>
@@ -624,7 +624,7 @@
                             <div class="admin-stat-label">Reseñas Total</div>
                         </div>
                     </div>
-                    <div class="admin-stat-card" style="padding:20px;">
+                    <div class="admin-stat-card analytics-stat-card">
                         <div class="admin-stat-icon" style="color:#0d6efd; background:rgba(13,110,253,0.15);">
                             <i class="fas fa-headset"></i>
                         </div>
@@ -636,54 +636,34 @@
                 </div>
 
                 <!-- Gráficas principales (2x2) -->
-                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px;">
+                <div class="analytics-charts-grid">
 
-                    <!-- Gráfica 1: Visitantes últimos 14 días -->
-                    <div class="admin-backup-card glass-card" style="padding:20px;">
-                        <div class="backup-card-header" style="margin-bottom:16px;">
-                            <i class="fas fa-users" style="color:#a259ff; font-size:1.4rem;"></i>
+                    <!-- Tendencias diarias: línea comparativa -->
+                    <div class="admin-backup-card glass-card analytics-chart-card analytics-trend-card">
+                        <div class="backup-card-header analytics-chart-header">
+                            <i class="fas fa-chart-line" style="color:#a259ff; font-size:1.4rem;"></i>
                             <div>
-                                <h3 style="margin:0;">Visitantes Diarios</h3>
-                                <p style="margin:0; font-size:0.78rem; color:var(--admin-text-muted);">Línea · Últimos 14 días automáticos</p>
+                                <h3 style="margin:0;">Actividad Diaria</h3>
+                                <p style="margin:0; font-size:0.78rem; color:var(--admin-text-muted);">Visitas, pedidos y reseñas · Últimos 14 días</p>
                             </div>
                         </div>
-                        <canvas id="chartVisitors" height="200"></canvas>
-                    </div>
-
-                    <!-- Gráfica 2: Pedidos por día -->
-                    <div class="admin-backup-card glass-card" style="padding:20px;">
-                        <div class="backup-card-header" style="margin-bottom:16px;">
-                            <i class="fas fa-motorcycle" style="color:#2ecc71; font-size:1.4rem;"></i>
-                            <div>
-                                <h3 style="margin:0;">Pedidos por Día</h3>
-                                <p style="margin:0; font-size:0.78rem; color:var(--admin-text-muted);">Barras · Últimos 14 días</p>
-                            </div>
+                        <div class="analytics-chart-plot">
+                            <canvas id="chartActivity" aria-label="Actividad diaria de visitas, pedidos y reseñas" role="img"></canvas>
                         </div>
-                        <canvas id="chartOrders" height="200"></canvas>
                     </div>
 
-                    <!-- Gráfica 3: Reseñas acumuladas -->
-                    <div class="admin-backup-card glass-card" style="padding:20px;">
-                        <div class="backup-card-header" style="margin-bottom:16px;">
-                            <i class="fas fa-star" style="color:#ffb800; font-size:1.4rem;"></i>
-                            <div>
-                                <h3 style="margin:0;">Reseñas por Día</h3>
-                                <p style="margin:0; font-size:0.78rem; color:var(--admin-text-muted);">Barras · Últimos 14 días</p>
-                            </div>
-                        </div>
-                        <canvas id="chartReviews" height="200"></canvas>
-                    </div>
-
-                    <!-- Gráfica 4: Distribución de Atención al Cliente -->
-                    <div class="admin-backup-card glass-card" style="padding:20px;">
-                        <div class="backup-card-header" style="margin-bottom:16px;">
+                    <!-- Distribución de solicitudes: dona -->
+                    <div class="admin-backup-card glass-card analytics-chart-card analytics-channel-card">
+                        <div class="backup-card-header analytics-chart-header">
                             <i class="fas fa-headset" style="color:#0d6efd; font-size:1.4rem;"></i>
                             <div>
-                                <h3 style="margin:0;">Tipos de Solicitudes</h3>
-                                <p style="margin:0; font-size:0.78rem; color:var(--admin-text-muted);">Dona · Distribución por tipo de solicitud</p>
+                                <h3 style="margin:0;">Solicitudes por Tipo</h3>
+                                <p style="margin:0; font-size:0.78rem; color:var(--admin-text-muted);">Distribución de Atención al Cliente</p>
                             </div>
                         </div>
-                        <canvas id="chartMessages" height="200"></canvas>
+                        <div class="analytics-chart-plot">
+                            <canvas id="chartMessages" aria-label="Distribución de solicitudes de atención al cliente" role="img"></canvas>
+                        </div>
                     </div>
 
                 </div>
@@ -2891,10 +2871,26 @@
             recordVisit();
 
             // Instancias de Chart.js
-            let chartVisitorsInst = null;
-            let chartOrdersInst = null;
-            let chartReviewsInst = null;
+            let chartActivityInst = null;
             let chartMessagesInst = null;
+            const doughnutCenterTextPlugin = {
+                id: 'doughnutCenterText',
+                afterDraw(chart, args, options) {
+                    const arc = chart.getDatasetMeta(0).data[0];
+                    if (!arc) return;
+                    const { ctx } = chart;
+                    ctx.save();
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = '#f2f4fa';
+                    ctx.font = '600 20px Inter, sans-serif';
+                    ctx.fillText(options.value, arc.x, arc.y - 5);
+                    ctx.fillStyle = '#aab4c7';
+                    ctx.font = '10px Inter, sans-serif';
+                    ctx.fillText('solicitudes', arc.x, arc.y + 13);
+                    ctx.restore();
+                }
+            };
 
             function renderAnalyticsView() {
                 const stats = getVisitorStats();
@@ -2930,86 +2926,95 @@
                     return parts[2] + '/' + parts[1];
                 });
 
-                // --- Gráfica 1: Visitantes (Línea) ---
+                // --- Gráfica de actividad diaria (Líneas) ---
                 const visitData = range.map(d => stats.byDay[d] || 0);
-                const ctxV = document.getElementById('chartVisitors');
-                if (ctxV) {
-                    if (chartVisitorsInst) { chartVisitorsInst.destroy(); chartVisitorsInst = null; }
-                    chartVisitorsInst = new Chart(ctxV.getContext('2d'), {
-                        type: 'line',
-                        data: {
-                            labels,
-                            datasets: [{
-                                label: 'Visitantes',
-                                data: visitData,
-                                borderColor: '#a259ff',
-                                backgroundColor: 'rgba(162,89,255,0.12)',
-                                borderWidth: 2.5,
-                                pointBackgroundColor: '#a259ff',
-                                pointRadius: 4,
-                                fill: true,
-                                tension: 0.4
-                            }]
-                        },
-                        options: chartOptions('#a259ff', 'Visitantes')
-                    });
-                }
-
-                // --- Gráfica 2: Pedidos por día (Barras) ---
                 const orderData = range.map(dateStr => {
                     return allOrders.filter(o => {
                         if (o.timestamp) return new Date(o.timestamp).toISOString().split('T')[0] === dateStr;
                         return false;
                     }).length;
                 });
-                const ctxO = document.getElementById('chartOrders');
-                if (ctxO) {
-                    if (chartOrdersInst) { chartOrdersInst.destroy(); chartOrdersInst = null; }
-                    chartOrdersInst = new Chart(ctxO.getContext('2d'), {
-                        type: 'bar',
-                        data: {
-                            labels,
-                            datasets: [{
-                                label: 'Pedidos',
-                                data: orderData,
-                                backgroundColor: 'rgba(46,204,113,0.6)',
-                                borderColor: '#2ecc71',
-                                borderWidth: 1.5,
-                                borderRadius: 6
-                            }]
-                        },
-                        options: chartOptions('#2ecc71', 'Pedidos')
-                    });
-                }
-
-                // --- Gráfica 3: Reseñas por día (Barras) ---
                 const reviewData = range.map(dateStr => {
                     return reviewsOnly.filter(r => {
                         if (r.timestamp) return new Date(r.timestamp).toISOString().split('T')[0] === dateStr;
                         return false;
                     }).length;
                 });
-                const ctxR = document.getElementById('chartReviews');
-                if (ctxR) {
-                    if (chartReviewsInst) { chartReviewsInst.destroy(); chartReviewsInst = null; }
-                    chartReviewsInst = new Chart(ctxR.getContext('2d'), {
-                        type: 'bar',
+                const ctxActivity = document.getElementById('chartActivity');
+                if (ctxActivity) {
+                    if (chartActivityInst) { chartActivityInst.destroy(); chartActivityInst = null; }
+                    chartActivityInst = new Chart(ctxActivity.getContext('2d'), {
+                        type: 'line',
                         data: {
                             labels,
-                            datasets: [{
-                                label: 'Reseñas',
-                                data: reviewData,
-                                backgroundColor: 'rgba(255,184,0,0.6)',
-                                borderColor: '#ffb800',
-                                borderWidth: 1.5,
-                                borderRadius: 6
-                            }]
+                            datasets: [
+                                {
+                                    label: 'Visitas',
+                                    data: visitData,
+                                    borderColor: '#a78bfa',
+                                    backgroundColor: 'rgba(167,139,250,0.12)',
+                                    pointBackgroundColor: '#a78bfa'
+                                },
+                                {
+                                    label: 'Pedidos',
+                                    data: orderData,
+                                    borderColor: '#48d6c6',
+                                    backgroundColor: 'rgba(72,214,198,0.08)',
+                                    pointBackgroundColor: '#48d6c6'
+                                },
+                                {
+                                    label: 'Reseñas',
+                                    data: reviewData,
+                                    borderColor: '#f5bd68',
+                                    backgroundColor: 'rgba(245,189,104,0.08)',
+                                    pointBackgroundColor: '#f5bd68'
+                                }
+                            ].map(dataset => ({
+                                ...dataset,
+                                borderWidth: 2.5,
+                                pointRadius: 0,
+                                pointHoverRadius: 5,
+                                pointHitRadius: 12,
+                                fill: false,
+                                tension: 0.42
+                            }))
                         },
-                        options: chartOptions('#ffb800', 'Reseñas')
+                        options: {
+                            ...chartOptions('#a78bfa', 'Actividad'),
+                            maintainAspectRatio: false,
+                            plugins: {
+                                ...chartOptions('#a78bfa', 'Actividad').plugins,
+                                legend: {
+                                    display: true,
+                                    position: 'bottom',
+                                    labels: {
+                                        color: '#c4ccda',
+                                        usePointStyle: true,
+                                        pointStyle: 'circle',
+                                        boxWidth: 7,
+                                        boxHeight: 7,
+                                        padding: 18,
+                                        font: { family: 'Inter', size: 11 }
+                                    }
+                                }
+                            },
+                            interaction: { intersect: false, mode: 'index' },
+                            scales: {
+                                ...chartOptions('#a78bfa', 'Actividad').scales,
+                                x: {
+                                    ...chartOptions('#a78bfa', 'Actividad').scales.x,
+                                    grid: { display: false }
+                                },
+                                y: {
+                                    ...chartOptions('#a78bfa', 'Actividad').scales.y,
+                                    grid: { color: 'rgba(255,255,255,0.055)' }
+                                }
+                            }
+                        }
                     });
                 }
 
-                // --- Gráfica 4: Tipos de solicitudes (Dona) ---
+                // --- Gráfica de distribución de solicitudes (Dona) ---
                 const tipos = { 'Pregunta': 0, 'Sugerencia': 0, 'Felicitación': 0, 'Queja': 0, 'Reclamo': 0, 'Otro': 0 };
                 messagesOnly.forEach(m => {
                     const a = (m.asunto || 'Otro');
@@ -3022,6 +3027,7 @@
                     const hasData = Object.values(tipos).some(v => v > 0);
                     chartMessagesInst = new Chart(ctxM.getContext('2d'), {
                         type: 'doughnut',
+                        plugins: [doughnutCenterTextPlugin],
                         data: {
                             labels: Object.keys(tipos),
                             datasets: [{
@@ -3035,11 +3041,27 @@
                         },
                         options: {
                             responsive: true,
-                            plugins: {
-                                legend: { labels: { color: '#c0b9ce', font: { family: 'Inter', size: 12 } } },
-                                tooltip: { callbacks: { label: ctx => hasData ? ` ${ctx.label}: ${ctx.raw}` : ' Sin datos aún' } }
+                            maintainAspectRatio: false,
+                            onResize(chart, size) {
+                                chart.options.plugins.legend.position = size.width <= 380 ? 'bottom' : 'right';
                             },
-                            cutout: '60%'
+                            plugins: {
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        color: '#c4ccda',
+                                        usePointStyle: true,
+                                        pointStyle: 'circle',
+                                        boxWidth: 8,
+                                        boxHeight: 8,
+                                        padding: 14,
+                                        font: { family: 'Inter', size: 11 }
+                                    }
+                                },
+                                tooltip: { callbacks: { label: ctx => hasData ? ` ${ctx.label}: ${ctx.raw}` : ' Sin datos aún' } },
+                                doughnutCenterText: { value: messagesOnly.length }
+                            },
+                            cutout: '72%'
                         }
                     });
                 }
